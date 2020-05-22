@@ -2,21 +2,26 @@ package main
 
 import (
 	"image/color"
+	"log"
 	"fyne.io/fyne"
-        "fyne.io/fyne/app"
-        "fyne.io/fyne/widget"
+    "fyne.io/fyne/app"
+    "fyne.io/fyne/widget"
 	"fyne.io/fyne/canvas"
 	"fyne.io/fyne/layout"
 	)
 
 func main() {
     nhp := app.New()
+	heroes := []string{"Axe","Juggernaut","Ursa"}
+	
     mainwin := nhp.NewWindow("nhp v0")
 	mainwin.Resize(fyne.NewSize(600,360))
+	mainwin.SetFixedSize(true)
 	
 	win_res := widget.NewButton("reset", func() {})
 	win_upd := widget.NewButton("update", func() {nhp.Quit()})
 	
+	/*
 	text1 := canvas.NewText("playername0", color.RGBA{0x00,0x42,0xff,0xff})
 	text2 := canvas.NewText("playername1", color.RGBA{0x1c,0xe6,0xb9,0xff})
 	text3 := canvas.NewText("playername2", color.RGBA{0x54,0x00,0x81,0xff})
@@ -27,19 +32,42 @@ func main() {
 	text8 := canvas.NewText("playername7", color.RGBA{0x7e,0xbf,0xf1,0xff})
 	text9 := canvas.NewText("playername8", color.RGBA{0x10,0x62,0x46,0xff})
 	text0 := canvas.NewText("playername9", color.RGBA{0x4e,0x2a,0x04,0xff})
+	*/
 	textb := canvas.NewText(" ", color.RGBA{0x4e,0x2a,0x04,0xff})
 	
+	namein1 := widget.NewEntry()
+	namein2 := widget.NewEntry()
+	namein3 := widget.NewEntry()
+	namein4 := widget.NewEntry()
+	namein5 := widget.NewEntry()
+	namein6 := widget.NewEntry()
+	namein7 := widget.NewEntry()
+	namein8 := widget.NewEntry()
+	namein9 := widget.NewEntry()
+	namein0 := widget.NewEntry()
+	
+	hero1 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero2 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero3 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero4 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero5 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero6 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero7 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero8 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero9 := widget.NewSelect(heroes, func(value string){log.Println(value)})
+	hero0 := widget.NewSelect(heroes, func(value string){log.Println(value)})
 	
 	
 	
 	
 	buttons := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),layout.NewSpacer(),win_res,layout.NewSpacer(),win_upd,layout.NewSpacer())
 	//colors
-	names := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,text1,text2,text3,text4,text5,textb,text6,text7,text8,text9,text0,textb)
-	//picks
+	//names := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,text1,text2,text3,text4,text5,textb,text6,text7,text8,text9,text0,textb)
+	picks := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,hero1,hero2,hero3,hero4,hero5,textb,hero6,hero7,hero8,hero9,hero0,textb)
+	namesin := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,namein1,namein2,namein3,namein4,namein5,textb,namein6,namein7,namein8,namein9,namein0,textb)
+	playerinfo := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),namesin,picks)
 	
 	
-	
-    mainwin.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), buttons, names))
+    mainwin.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), buttons, playerinfo))
     mainwin.ShowAndRun()
 }
