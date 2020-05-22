@@ -7,16 +7,17 @@ import (
 )
 
 func main() {
-    a := app.New()
-    win := a.NewWindow("nhp v0")
-	win.Resize(fyne.NewSize(800,600))
-   	win.SetContent(widget.NewVBox(
-      	 widget.NewLabel("Update hero names and picks be here!"),
-       	 widget.NewButton("Update!", func() {
-            a.Quit()
-         }),
-    ))
-    win.ShowAndRun()
+    nhp := app.New()
+    mainwin := nhp.NewWindow("nhp v0")
+	mainwin.Resize(fyne.NewSize(600,600))
+	
+	win_res := widget.NewButton("reset", func() {})
+	win_upd := widget.NewButton("update", func() {nhp.Quit()})
+	
+	buttons := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),layout.NewSpacer(),win_res,layout.NewSpacer(),win_upd,layout.NewSpacer())
+	
+    mainwin.SetContent(container)
+    mainwin.ShowAndRun()
 }
 
 		
