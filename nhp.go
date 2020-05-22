@@ -12,11 +12,11 @@ import (
 
 func main() {
     nhp := app.New()
-	heroes := []string{"Axe","Juggernaut","Ursa"}
+	heroes := []string{"Axe","Legion Commander","Ursa"}
 	
     mainwin := nhp.NewWindow("nhp v0")
-	mainwin.Resize(fyne.NewSize(600,360))
-	mainwin.SetFixedSize(true)
+	mainwin.Resize(fyne.NewSize(400,360))
+	//mainwin.SetFixedSize(true)
 	
 	win_res := widget.NewButton("reset", func() {})
 	win_upd := widget.NewButton("update", func() {nhp.Quit()})
@@ -57,15 +57,23 @@ func main() {
 	hero9 := widget.NewSelect(heroes, func(value string){log.Println(value)})
 	hero0 := widget.NewSelect(heroes, func(value string){log.Println(value)})
 	
-	
-	
-	
+	pid1 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero1,namein1)
+	pid2 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero2,namein2)
+	pid3 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero3,namein3)
+	pid4 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero4,namein4)
+	pid5 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero5,namein5)
+	pid6 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero6,namein6)
+	pid7 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero7,namein7)
+	pid8 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero8,namein8)
+	pid9 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero9,namein9)
+	pid0 := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),hero0,namein0)
+		
 	buttons := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),layout.NewSpacer(),win_res,layout.NewSpacer(),win_upd,layout.NewSpacer())
 	//colors
 	//names := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,text1,text2,text3,text4,text5,textb,text6,text7,text8,text9,text0,textb)
-	picks := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,hero1,hero2,hero3,hero4,hero5,textb,hero6,hero7,hero8,hero9,hero0,textb)
-	namesin := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,namein1,namein2,namein3,namein4,namein5,textb,namein6,namein7,namein8,namein9,namein0,textb)
-	playerinfo := fyne.NewContainerWithLayout(layout.NewHBoxLayout(),namesin,picks)
+	//picks := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,hero1,hero2,hero3,hero4,hero5,textb,hero6,hero7,hero8,hero9,hero0,textb)
+	//namesin := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,namein1,namein2,namein3,namein4,namein5,textb,namein6,namein7,namein8,namein9,namein0,textb)
+	playerinfo := fyne.NewContainerWithLayout(layout.NewVBoxLayout(),textb,pid1,pid2,pid3,pid4,pid5,textb,pid6,pid7,pid8,pid9,pid0,textb)
 	
 	
     mainwin.SetContent(fyne.NewContainerWithLayout(layout.NewVBoxLayout(), buttons, playerinfo))
