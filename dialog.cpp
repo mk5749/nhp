@@ -38,6 +38,7 @@ void Dialog::b_reset(){
     QFile p_name9(path+"/names/9.txt");
     QFile p_name0(path+"/names/10.txt");
 
+    QFile p_pics;
 
     if (!p_name1.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
     if (!p_name2.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
@@ -62,11 +63,18 @@ void Dialog::b_reset(){
     pnames[9] = &p_name0;
 
     for(int i = 0;i<10;i++){
+            //names
             QTextStream out(pnames[i]);
             out << "";
             playernames[i]->setText("");
             picks[i]->setCurrentIndex(0);
             pnames[i]->close();
+
+            //pics
+            p_pics.setFileName(path+"/icons/picks/"+QString::number(i)+".jpg");
+            p_pics.remove();
+            p_pics.setFileName(path+"/icons/Chicken.jpg");
+            p_pics.copy(path+"/icons/picks/"+QString::number(i)+".jpg");
     }
 
 
@@ -85,6 +93,9 @@ void Dialog::b_save(){
     QFile p_name9(path+"/names/9.txt");
     QFile p_name0(path+"/names/10.txt");
 
+    QFile p_pics;
+
+
 
     if (!p_name1.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
     if (!p_name2.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
@@ -109,9 +120,18 @@ void Dialog::b_save(){
     pnames[9] = &p_name0;
 
     for(int i = 0;i<10;i++){
+            //names
             QTextStream out(pnames[i]);
             out << playernames[i]->text();
             pnames[i]->close();
+
+            //pics
+            p_pics.setFileName(path+"/icons/picks/"+QString::number(i)+".jpg");
+            p_pics.remove();
+
+            p_pics.setFileName(path+"/icons/"+picks[i]->currentText()+".jpg");
+            p_pics.copy(path+"/icons/picks/"+QString::number(i)+".jpg");
+
     }
 
 
@@ -135,6 +155,7 @@ void Dialog::createHorizontalGroupBox()
 
     heronames.push_back("---");
     heronames.push_back("AA");
+    heronames.push_back("Abaddon");
     heronames.push_back("Alchemist");
     heronames.push_back("AM");
     heronames.push_back("Axe");
@@ -142,10 +163,10 @@ void Dialog::createHorizontalGroupBox()
     heronames.push_back("Bat");
     heronames.push_back("Beastmaster");
     heronames.push_back("BH");
-    heronames.push_back("Brood");
-    heronames.push_back("BS");
     heronames.push_back("Brewmaster");
     heronames.push_back("Bristleback");
+    heronames.push_back("Brood");
+    heronames.push_back("BS");    
     heronames.push_back("Centaur");
     heronames.push_back("Chen");
     heronames.push_back("CK");
@@ -154,9 +175,10 @@ void Dialog::createHorizontalGroupBox()
     heronames.push_back("CM");
     heronames.push_back("Dazzle");
     heronames.push_back("DK");
-    heronames.push_back("DS");
+    heronames.push_back("Doom");
     heronames.push_back("DP");
     heronames.push_back("Drow");
+    heronames.push_back("DS");
     heronames.push_back("Dusa");        heronames.push_back("Earth Spirit");
     heronames.push_back("Ember");        heronames.push_back("Enchantress");
     heronames.push_back("Enigma");        heronames.push_back("ES");
@@ -170,10 +192,10 @@ void Dialog::createHorizontalGroupBox()
     heronames.push_back("Luna");        heronames.push_back("Lycan");
     heronames.push_back("Magnus");        heronames.push_back("Meepo");
     heronames.push_back("Mirana");        heronames.push_back("Morphling");
-    heronames.push_back("NA");        heronames.push_back("Naga");
+    heronames.push_back("NA");        heronames.push_back("Naga"); heronames.push_back("Naix");
     heronames.push_back("Necro");        heronames.push_back("NS");
-    heronames.push_back("OD");        heronames.push_back("Omniknight");
-    heronames.push_back("Ogre");        heronames.push_back("Oracle");
+    heronames.push_back("OD");        heronames.push_back("Ogre");
+    heronames.push_back("Omniknight");        heronames.push_back("Oracle");
     heronames.push_back("PA");        heronames.push_back("Phoenix");
     heronames.push_back("Pit Lord");        heronames.push_back("PL");
     heronames.push_back("Puck");        heronames.push_back("Pudge");
@@ -183,7 +205,7 @@ void Dialog::createHorizontalGroupBox()
     heronames.push_back("Sand King");        heronames.push_back("SB");
     heronames.push_back("SD");        heronames.push_back("SF");
     heronames.push_back("Shredder");        heronames.push_back("Silencer");
-    heronames.push_back("Skeleton King");        heronames.push_back("Sky");
+    heronames.push_back("SK");        heronames.push_back("Sky");
     heronames.push_back("Slardar");        heronames.push_back("Slark");
     heronames.push_back("Sniper");        heronames.push_back("Spectre");
     heronames.push_back("Storm");        heronames.push_back("Sven");
@@ -196,8 +218,8 @@ void Dialog::createHorizontalGroupBox()
     heronames.push_back("Ursa");        heronames.push_back("Veno");
     heronames.push_back("Viper");        heronames.push_back("Visage");
     heronames.push_back("Void");        heronames.push_back("VS");
-    heronames.push_back("Warlock");        heronames.push_back("Weaver");
-    heronames.push_back("WD");        heronames.push_back("Winter");
+    heronames.push_back("Warlock");        heronames.push_back("WD");
+    heronames.push_back("Weaver");        heronames.push_back("Winter");
     heronames.push_back("Wisp");        heronames.push_back("WR");
     heronames.push_back("Zet");        heronames.push_back("Zeus");
 
