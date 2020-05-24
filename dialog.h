@@ -23,7 +23,6 @@ class QTextStream;
 
 QT_END_NAMESPACE
 
-//! [0]
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -49,11 +48,6 @@ private:
     QLineEdit *playernames[NumGridRows];
     QPushButton *buttons[NumButtons];
     QComboBox *picks[10];
-    QFile *pnames[10];
-    QFile *ppics[10];
-
-
 };
-//! [0]
 
 #endif // DIALOG_H

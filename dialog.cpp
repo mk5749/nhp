@@ -21,122 +21,51 @@ Dialog::Dialog()
     mainLayout->addWidget(gridGroupBox);
     setLayout(mainLayout);
 
-    setWindowTitle(tr("NHPv0"));
+    setWindowTitle(tr("NHPv1"));
 }
 
 void Dialog::b_reset(){
-
     QString path = qApp->applicationDirPath();
-    QFile p_name1(path+"/names/1.txt");
-    QFile p_name2(path+"/names/2.txt");
-    QFile p_name3(path+"/names/3.txt");
-    QFile p_name4(path+"/names/4.txt");
-    QFile p_name5(path+"/names/5.txt");
-    QFile p_name6(path+"/names/6.txt");
-    QFile p_name7(path+"/names/7.txt");
-    QFile p_name8(path+"/names/8.txt");
-    QFile p_name9(path+"/names/9.txt");
-    QFile p_name0(path+"/names/10.txt");
-
+    QFile p_names;
     QFile p_pics;
-
-    if (!p_name1.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name2.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name3.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name4.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name5.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name6.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name7.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name8.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name9.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name0.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-
-    pnames[0] = &p_name1;
-    pnames[1] = &p_name2;
-    pnames[2] = &p_name3;
-    pnames[3] = &p_name4;
-    pnames[4] = &p_name5;
-    pnames[5] = &p_name6;
-    pnames[6] = &p_name7;
-    pnames[7] = &p_name8;
-    pnames[8] = &p_name9;
-    pnames[9] = &p_name0;
-
+    QTextStream to_file;
     for(int i = 0;i<10;i++){
             //names
-            QTextStream out(pnames[i]);
-            out << "";
+            p_names.setFileName(path+"/names/"+QString::number(i+1)+".txt");
+            if (!p_names.open(QIODevice::ReadWrite | QIODevice::Truncate )) return;
+            to_file.setDevice(&p_names);
+            to_file << "";
             playernames[i]->setText("");
             picks[i]->setCurrentIndex(0);
-            pnames[i]->close();
-
+            p_names.close();
             //pics
             p_pics.setFileName(path+"/icons/picks/"+QString::number(i)+".jpg");
             p_pics.remove();
             p_pics.setFileName(path+"/icons/Chicken.jpg");
             p_pics.copy(path+"/icons/picks/"+QString::number(i)+".jpg");
     }
-
-
 }
+
 void Dialog::b_save(){
-
     QString path = qApp->applicationDirPath();
-    QFile p_name1(path+"/names/1.txt");
-    QFile p_name2(path+"/names/2.txt");
-    QFile p_name3(path+"/names/3.txt");
-    QFile p_name4(path+"/names/4.txt");
-    QFile p_name5(path+"/names/5.txt");
-    QFile p_name6(path+"/names/6.txt");
-    QFile p_name7(path+"/names/7.txt");
-    QFile p_name8(path+"/names/8.txt");
-    QFile p_name9(path+"/names/9.txt");
-    QFile p_name0(path+"/names/10.txt");
-
+    QFile p_names;
     QFile p_pics;
-
-
-
-    if (!p_name1.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name2.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name3.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name4.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name5.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name6.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name7.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name8.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name9.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-    if (!p_name0.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text)) return;
-
-    pnames[0] = &p_name1;
-    pnames[1] = &p_name2;
-    pnames[2] = &p_name3;
-    pnames[3] = &p_name4;
-    pnames[4] = &p_name5;
-    pnames[5] = &p_name6;
-    pnames[6] = &p_name7;
-    pnames[7] = &p_name8;
-    pnames[8] = &p_name9;
-    pnames[9] = &p_name0;
-
+    QTextStream to_file;
     for(int i = 0;i<10;i++){
             //names
-            QTextStream out(pnames[i]);
-            out << playernames[i]->text();
-            pnames[i]->close();
-
+            p_names.setFileName(path+"/names/"+QString::number(i+1)+".txt");
+            if (!p_names.open(QIODevice::ReadWrite | QIODevice::Truncate )) return;
+            to_file.setDevice(&p_names);
+            to_file << playernames[i]->text();
+            p_names.close();
             //pics
             p_pics.setFileName(path+"/icons/picks/"+QString::number(i)+".jpg");
             p_pics.remove();
-
             p_pics.setFileName(path+"/icons/"+picks[i]->currentText()+".jpg");
             p_pics.copy(path+"/icons/picks/"+QString::number(i)+".jpg");
-
     }
-
-
-
 }
+
 void Dialog::createHorizontalGroupBox()
 {
 
@@ -145,7 +74,6 @@ void Dialog::createHorizontalGroupBox()
 
     buttons[0] = new QPushButton("&Clear",this);
     connect(buttons[0], SIGNAL (clicked()), this, SLOT (b_reset()));
-
 
     buttons[1] = new QPushButton("&Save");
     connect(buttons[1], SIGNAL (clicked()), this, SLOT (b_save()));
@@ -223,22 +151,14 @@ void Dialog::createHorizontalGroupBox()
     heronames.push_back("Wisp");        heronames.push_back("WR");
     heronames.push_back("Zet");        heronames.push_back("Zeus");
 
-
-
-
-
     horizontalGroupBox->setLayout(layout);
 }
-//! [7]
 
-//! [8]
 void Dialog::createGridGroupBox()
 {
     gridGroupBox = new QGroupBox();
-//! [8]
     QGridLayout *layout = new QGridLayout;
 
-//! [9]
     QPalette pal = palette();
     for (int i = 0; i < NumGridRows; ++i) {
         labels[i] = new QLabel("     ");
@@ -292,41 +212,12 @@ void Dialog::createGridGroupBox()
         }
     }
 
-//! [9] //! [10]
-
-   /* QComboBox *hero1 = new QComboBox;
-    QComboBox *hero2 = new QComboBox;
-    QComboBox *hero3 = new QComboBox;
-    QComboBox *hero4 = new QComboBox;
-    QComboBox *hero5 = new QComboBox;
-    QComboBox *hero6 = new QComboBox;
-    QComboBox *hero7 = new QComboBox;
-    QComboBox *hero8 = new QComboBox;
-    QComboBox *hero9 = new QComboBox;
-    QComboBox *hero0 = new QComboBox;
-*/
     for(unsigned int i = 0; i<10; i++){
         picks[i] = new QComboBox;
         for(unsigned int j = 0; j<heronames.size(); j++){
             picks[i]->insertItem(j,heronames[j]);
         }
     }
-
-/*
-        hero1->insertItem(j,heronames[j]);
-        hero2->insertItem(j,heronames[j]);
-        hero3->insertItem(j,heronames[j]);
-        hero4->insertItem(j,heronames[j]);
-        hero5->insertItem(j,heronames[j]);
-        hero6->insertItem(j,heronames[j]);
-        hero7->insertItem(j,heronames[j]);
-        hero8->insertItem(j,heronames[j]);
-        hero9->insertItem(j,heronames[j]);
-        hero0->insertItem(j,heronames[j]);
-
-    }
-    hero1->setCurrentIndex(23);
-*/
 
     layout->addWidget(picks[0], 1, 2, 1, 1);
     layout->addWidget(picks[1], 2, 2, 1, 1);
@@ -338,9 +229,7 @@ void Dialog::createGridGroupBox()
     layout->addWidget(picks[7], 9, 2, 1, 1);
     layout->addWidget(picks[8], 10, 2, 1, 1);
     layout->addWidget(picks[9], 11, 2, 1, 1);
-//! [10]
 
-//! [11]
     layout->setColumnStretch(1, 45);
     layout->setColumnStretch(2, 45);
     gridGroupBox->setLayout(layout);
