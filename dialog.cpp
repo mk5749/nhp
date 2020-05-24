@@ -44,6 +44,23 @@ void Dialog::b_reset(){
             p_pics.setFileName(path+"/icons/Chicken.jpg");
             p_pics.copy(path+"/icons/picks/"+QString::number(i)+".jpg");
     }
+    //a
+    p_pics.setFileName(path+"/icons/picks/aegis.jpg");
+    p_pics.remove();
+    p_pics.setFileName(path+"/icons/Chicken.jpg");
+    p_pics.copy(path+"/icons/picks/aegis.jpg");
+    aegis->setCurrentIndex(0);
+    //r
+    p_pics.setFileName(path+"/icons/picks/rapira1.jpg");
+    p_pics.remove();
+    p_pics.setFileName(path+"/icons/Chicken.jpg");
+    p_pics.copy(path+"/icons/picks/rapira1.jpg");
+    rapira1->setCurrentIndex(0);
+    p_pics.setFileName(path+"/icons/picks/rapira2.jpg");
+    p_pics.remove();
+    p_pics.setFileName(path+"/icons/Chicken.jpg");
+    p_pics.copy(path+"/icons/picks/rapira2.jpg");
+    rapira2->setCurrentIndex(0);
 }
 
 void Dialog::b_save(){
@@ -64,6 +81,21 @@ void Dialog::b_save(){
             p_pics.setFileName(path+"/icons/"+picks[i]->currentText()+".jpg");
             p_pics.copy(path+"/icons/picks/"+QString::number(i)+".jpg");
     }
+    //a
+    p_pics.setFileName(path+"/icons/picks/aegis.jpg");
+    p_pics.remove();
+    p_pics.setFileName(path+"/icons/"+aegis->currentText()+".jpg");
+    p_pics.copy(path+"/icons/picks/aegis.jpg");
+    //r
+    p_pics.setFileName(path+"/icons/picks/rapira1.jpg");
+    p_pics.remove();
+    p_pics.setFileName(path+"/icons/"+rapira1->currentText()+".jpg");
+    p_pics.copy(path+"/icons/picks/rapira1.jpg");
+    p_pics.setFileName(path+"/icons/picks/rapira2.jpg");
+    p_pics.remove();
+    p_pics.setFileName(path+"/icons/"+rapira2->currentText()+".jpg");
+    p_pics.copy(path+"/icons/picks/rapira2.jpg");
+
 }
 
 void Dialog::createHorizontalGroupBox()
@@ -229,6 +261,28 @@ void Dialog::createGridGroupBox()
     layout->addWidget(picks[7], 9, 2, 1, 1);
     layout->addWidget(picks[8], 10, 2, 1, 1);
     layout->addWidget(picks[9], 11, 2, 1, 1);
+
+    aegis = new QComboBox;
+    rapira1 = new QComboBox;
+    rapira2 = new QComboBox;
+
+    for(unsigned int j = 0; j<heronames.size(); j++){
+        aegis->insertItem(j,heronames[j]);
+        rapira1->insertItem(j,heronames[j]);
+        rapira2->insertItem(j,heronames[j]);
+
+    }
+
+    layout->addWidget(new QLabel(), 12, 0);
+    layout->addWidget(new QLabel(), 12, 1);
+
+    layout->addWidget(new QLabel("AEGIS"), 13, 1, 1, 1, Qt::AlignRight);
+    layout->addWidget(new QLabel("RAPIRA1"), 14, 1, 1, 1, Qt::AlignRight);
+    layout->addWidget(new QLabel("RAPIRA2"), 15, 1, 1, 1, Qt::AlignRight);
+
+    layout->addWidget(aegis, 13, 2, 1, 1);
+    layout->addWidget(rapira1, 14, 2, 1, 1);
+    layout->addWidget(rapira2, 15, 2, 1, 1);
 
     layout->setColumnStretch(1, 45);
     layout->setColumnStretch(2, 45);

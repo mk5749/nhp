@@ -48,6 +48,9 @@ private:
     QLineEdit *playernames[NumGridRows];
     QPushButton *buttons[NumButtons];
     QComboBox *picks[10];
+    QComboBox *aegis;
+    QComboBox *rapira1;
+    QComboBox *rapira2;
 };
 
 #endif // DIALOG_H
